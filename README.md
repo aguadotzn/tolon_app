@@ -5,7 +5,7 @@ The collaborative platform to carry out activities in your village 🏘.
 # Description 
 Presentamos: TOLÓN 🔔. La plataforma colaborativa para realizar actividades en tu pueblo.
 
-![Logo](logoColors.png)
+![Logo](logo.png)
 
 **Tolon** se presenta como un servicio colaborativo en el que establecer un nexo entre personas con intereses comunes para realizar actividades en compañía. 
 
