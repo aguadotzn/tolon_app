@@ -1,14 +1,10 @@
-# TOLON _APP_ 
-## (Web Version)
-
+# TOLÓN _APP_ 
 The collaborative platform to carry out activities in your village 🏘.
 (Only available in Spanish)
 
-# HACKATHON HP (09 NOVIEMBRE 2019)
-  Normas, codigo de conducta, información del evento en este [link](https://hpscds.com/eventos/hackathon/) además del archivo "hoja_informativa.pdf" en la carpeta _/instrucciones_ de este repositorio.
 
 # IDEA 
-Presentamos: TOLON 🔔. La plataforma colaborativa para realizar actividades en tu pueblo.
+Presentamos: TOLÓN 🔔. La plataforma colaborativa para realizar actividades en tu pueblo.
 
 ![Logo](/img_README/tolon.png)
 
