@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/styles/TolonTheme.dart' as theme;
-
-import 'models/User.dart';
+import 'package:tolon_app/screens/home/models/User.dart';
 
 class HomeTabBar extends StatelessWidget {
 
