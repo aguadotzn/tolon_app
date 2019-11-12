@@ -4,12 +4,14 @@ import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
 import 'package:tolon_app/screens/login/LoginPageIB.dart';
 
+import 'ILoginPage.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> implements ILoginPage {
   TextEditingController username;
   TextEditingController password;
   bool isEnable = false;
@@ -70,5 +72,15 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void onLogin(String username, String password) {
+      //TODO: implement onLogin
+  }
+
+  @override
+  void onError() {
+    // TODO: implement onError
   }
 }
