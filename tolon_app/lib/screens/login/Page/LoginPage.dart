@@ -22,7 +22,6 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   @override
   void initState() {
     _viewModel = LoginViewModelInjector.injectMockViewModel(this);
-
     username = TextEditingController();
     password = TextEditingController();
     super.initState();
