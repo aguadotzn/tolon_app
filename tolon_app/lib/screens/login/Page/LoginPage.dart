@@ -22,18 +22,19 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   @override
   void initState() {
     _viewModel = LoginViewModelInjector.injectMockViewModel(this);
+
     username = TextEditingController();
-    password = TextEditingController(); 
+    password = TextEditingController();
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) =>
-      LoginPageIB.build(context, onPressed, onPressedSeeEvents, username, password);
+  Widget build(BuildContext context) => LoginPageIB.build(
+      context, onPressed, onPressedSeeEvents, username, password);
 
   void onPressed() {
     FocusScope.of(context).unfocus();
-    _viewModel.login(username.text, password.text); 
+    _viewModel.login(username.text, password.text);
   }
 
   void onPressedSeeEvents() {
@@ -43,7 +44,6 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   @override
   void onLogin() {
     HomeTabBar tabBar;
-
     if (username.text.toLowerCase() == "jose") {
       tabBar = HomeTabBar(User(
         image: Image.asset("assets/images/users/avatar1.png"),
@@ -64,7 +64,7 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
 
   @override
   void onError() {
-    
+    print("Error in login screen");
   }
 
   @override
@@ -85,5 +85,5 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         ),
       ),
     );
-  } 
+  }
 }
