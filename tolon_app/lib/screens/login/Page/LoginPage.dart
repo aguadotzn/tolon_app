@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tolon_app/screens/home/HomeTabBar.dart';
 import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
-import 'package:tolon_app/screens/login/LoginPageIB.dart';
-
+import 'package:tolon_app/screens/login/page/LoginPageIB.dart';
+import '../viewModel/LoginPageViewModel.dart';
+import '../viewModel/LoginViewModelInjector.dart';
 import 'ILoginPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,24 +17,31 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   TextEditingController password;
   bool isEnable = false;
 
+  LoginPageViewModel _viewModel;
+
   @override
   void initState() {
+    _viewModel = LoginViewModelInjector.injectMockViewModel(this);
     username = TextEditingController();
-    password = TextEditingController();
-
-    // if (!username.text.isEmpty && !password.text.isEmpty) {
-    //   isEnable = true;
-    // }
+    password = TextEditingController(); 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) =>
-      LoginPageIB.build(context, onPressed, onSeeEvents, username, password);
+      LoginPageIB.build(context, onPressed, onPressedSeeEvents, username, password);
 
   void onPressed() {
     FocusScope.of(context).unfocus();
+    _viewModel.login(username.text, password.text); 
+  }
 
+  void onPressedSeeEvents() {
+    _viewModel.seePublicEvents();
+  }
+
+  @override
+  void onLogin() {
     HomeTabBar tabBar;
 
     if (username.text.toLowerCase() == "jose") {
@@ -49,13 +57,18 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         isSuperuser: false,
       ));
     }
-
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return tabBar;
     }));
   }
 
-  void onSeeEvents() {
+  @override
+  void onError() {
+    
+  }
+
+  @override
+  void onGetPublicActivities() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => Scaffold(
@@ -72,15 +85,5 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         ),
       ),
     );
-  }
-
-  @override
-  void onLogin(String username, String password) {
-      //TODO: implement onLogin
-  }
-
-  @override
-  void onError() {
-    // TODO: implement onError
-  }
+  } 
 }
