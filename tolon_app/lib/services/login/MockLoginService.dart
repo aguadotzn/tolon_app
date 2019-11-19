@@ -8,8 +8,5 @@ class MockLoginService extends ILoginService {
   }
 
   @override
-  Future<List<Activity>> dowloadActivities() {
-    // TODO: implement dowloadActivitiesData
-    return null;
-  }
+  Future<List<Activity>> dowloadActivities() => Future.value([]);
 }
