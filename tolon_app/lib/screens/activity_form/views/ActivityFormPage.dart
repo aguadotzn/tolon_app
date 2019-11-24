@@ -27,7 +27,7 @@ class _ActivityFormPageState extends State<ActivityFormPage>
     super.initState();
   }
 
-  void _onJoinPressed() => setState(() => isJoined = !isJoined);
+  void _onJoinPressed() => _viewModel.join(widget.activity);
 
   @override
   Widget build(BuildContext context) => ActivityFormPageIB.build(
@@ -37,4 +37,7 @@ class _ActivityFormPageState extends State<ActivityFormPage>
         onJoinPressed: _onJoinPressed,
         user: widget.user,
       );
+
+  @override
+  void onActivityJoined() => setState(() => isJoined = !isJoined);
 }
