@@ -1,3 +1,3 @@
 abstract class IActivityFormPage {
-  void onActivityJoined();
+  void onActivityJoined(bool isJoined);
 }

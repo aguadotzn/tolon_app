@@ -19,7 +19,7 @@ class ActivityFormPage extends StatefulWidget {
 class _ActivityFormPageState extends State<ActivityFormPage>
     implements IActivityFormPage {
   ActivityFormViewModel _viewModel;
-  bool isJoined = false;
+  bool _isJoined = false;
 
   @override
   void initState() {
@@ -27,17 +27,20 @@ class _ActivityFormPageState extends State<ActivityFormPage>
     super.initState();
   }
 
-  void _onJoinPressed() => _viewModel.join(widget.activity);
+  void _onJoinPressed() => _viewModel.join(
+        widget.activity,
+        isCurrentlyJoined: _isJoined,
+      );
 
   @override
   Widget build(BuildContext context) => ActivityFormPageIB.build(
         context,
         widget.activity,
-        isJoined: isJoined,
+        isJoined: _isJoined,
         onJoinPressed: _onJoinPressed,
         user: widget.user,
       );
 
   @override
-  void onActivityJoined() => setState(() => isJoined = !isJoined);
+  void onActivityJoined(bool isJoined) => setState(() => _isJoined = isJoined);
 }
