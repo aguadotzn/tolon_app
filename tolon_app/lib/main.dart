@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tolon_app/screens/login/LoginPage.dart';
 import 'package:tolon_app/styles/TolonTheme.dart' as theme;
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'screens/login/navController/LoginNavController.dart';
 
 void main() => runApp(Tolon());
 
@@ -13,7 +14,7 @@ class Tolon extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tolón',
       theme: theme.getThemeData(),
-      home: LoginPage(),
+      home: LoginNavController(),
     );
   }
 }

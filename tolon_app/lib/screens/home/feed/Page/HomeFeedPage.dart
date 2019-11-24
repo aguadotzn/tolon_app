@@ -8,7 +8,7 @@ import 'package:tolon_app/screens/home/feed/ViewModel/HomeFeedViewModel.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
 import 'package:tolon_app/widgets/ActivityCard.dart';
 import 'HomeFeedPageIB.dart';
-import '../../models/Activity.dart';
+import 'package:tolon_app/screens/home/models/Activity.dart';
 
 class HomeFeedPage extends StatefulWidget {
   const HomeFeedPage(
