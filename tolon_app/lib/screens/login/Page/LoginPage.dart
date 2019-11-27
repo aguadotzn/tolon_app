@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tolon_app/screens/home/HomeTabBar.dart';
 import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
-import 'package:tolon_app/screens/login/page/LoginPageIB.dart';
+import '../page/ILoginPage.dart';
+import '../page/LoginPageIB.dart';
 import '../viewModel/LoginPageViewModel.dart';
 import '../viewModel/LoginViewModelInjector.dart';
-import 'ILoginPage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,6 +21,7 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
 
   @override
   void initState() {
+    _enableLoginButton();
     _viewModel = LoginViewModelInjector.injectMockViewModel(this);
     username = TextEditingController();
     password = TextEditingController();
@@ -28,8 +29,7 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   }
 
   @override
-  Widget build(BuildContext context) => LoginPageIB.build(
-      context, onPressed, onPressedSeeEvents, username, password);
+  Widget build(BuildContext context) => LoginPageIB.build(context, onPressed, onPressedSeeEvents, username, password, _enableLoginButton,isEnable);
 
   void onPressed() {
     FocusScope.of(context).unfocus();
@@ -64,6 +64,7 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   @override
   void onError() {
     print("Error in login screen");
+    _showAlertDialog(context);
   }
 
   @override
@@ -84,5 +85,27 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         ),
       ),
     );
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title: Text("No se ha podido iniciar sesión."),
+          );
+        });
+  }
+
+  void _enableLoginButton() {
+    if((username.text.isNotEmpty) && (password.text.isNotEmpty)){
+        setState(() {
+          isEnable = true;
+        });
+    } else {
+      setState(() {
+        isEnable = false;
+      });
+    }
   }
 }

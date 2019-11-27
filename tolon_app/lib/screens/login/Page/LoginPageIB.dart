@@ -9,7 +9,8 @@ class LoginPageIB {
     Function() onSeeEvents,
     TextEditingController usernameController,
     TextEditingController passwordController,
-  ) {
+    Function() checkEnableLogin,
+    bool isEnable) {
     return SafeArea(
       top: true,
       child: SingleChildScrollView(
@@ -33,7 +34,9 @@ class LoginPageIB {
                   controller: usernameController,
                   decoration: InputDecoration(
                       labelText: "Usuario", border: OutlineInputBorder()),
-                  onChanged: null,
+                  onChanged: (value) {
+                    checkEnableLogin();
+                  },
                 ),
                 SizedBox(
                   height: 8,
@@ -43,6 +46,9 @@ class LoginPageIB {
                   decoration: InputDecoration(
                       labelText: "Contraseña", border: OutlineInputBorder()),
                   obscureText: true,
+                  onChanged: (value){
+                    checkEnableLogin();
+                  },
                 ),
               ],
             ),
@@ -54,7 +60,7 @@ class LoginPageIB {
               children: <Widget>[
                 RaisedButton(
                   child: Text("Iniciar sesión"),
-                  onPressed: onPressed,
+                  onPressed: isEnable == true ? onPressed : null ,
                 ),
                 FlatButton(
                   child: Text(
