@@ -15,16 +15,17 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> implements ILoginPage {
   TextEditingController username;
   TextEditingController password;
-  bool isEnable = false;
+  bool isEnable;
 
   LoginPageViewModel _viewModel;
 
   @override
   void initState() {
-    _enableLoginButton();
     _viewModel = LoginViewModelInjector.injectMockViewModel(this);
     username = TextEditingController();
     password = TextEditingController();
+    _enableLoginButton();
+
     super.initState();
   }
 
@@ -98,7 +99,7 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   }
 
   void _enableLoginButton() {
-    if((username.text.isNotEmpty) && (password.text.isNotEmpty)){
+    if((username.text.isNotEmpty ) && (password.text.isNotEmpty)){
         setState(() {
           isEnable = true;
         });
