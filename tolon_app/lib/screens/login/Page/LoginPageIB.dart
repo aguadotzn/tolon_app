@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tolon_app/styles/ImagesReferences.dart';
 
+import '../../../widgets/PrimaryButton.dart';
+
 class LoginPageIB {
   static Widget build(
-    BuildContext context,
-    Function() onPressed,
-    Function() onSeeEvents,
-    TextEditingController usernameController,
-    TextEditingController passwordController,
-    Function() checkEnableLogin,
-    bool isEnable) {
+      BuildContext context,
+      Function() onPressed,
+      Function() onSeeEvents,
+      TextEditingController usernameController,
+      TextEditingController passwordController,
+      Function() checkEnableLogin,
+      bool isEnable) {
     return SafeArea(
       top: true,
       child: SingleChildScrollView(
@@ -46,7 +48,7 @@ class LoginPageIB {
                   decoration: InputDecoration(
                       labelText: "Contraseña", border: OutlineInputBorder()),
                   obscureText: true,
-                  onChanged: (value){
+                  onChanged: (value) {
                     checkEnableLogin();
                   },
                 ),
@@ -58,10 +60,12 @@ class LoginPageIB {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                RaisedButton(
-                  child: Text("Iniciar sesión"),
-                  onPressed: isEnable == true ? onPressed : null ,
-                ),
+                // RaisedButton(
+                //   disabledColor:Theme.of(context).secondaryHeaderColor,
+                //   child: Text("Iniciar sesión"),
+                //   onPressed: isEnable == true ? onPressed : null,
+                // ),
+                PrimaryButton(onPressed: isEnable == true ? onPressed : null, title: "Iniciar sesión",),
                 FlatButton(
                   child: Text(
                     "Registrarse",
