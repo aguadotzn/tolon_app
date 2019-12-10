@@ -3,6 +3,7 @@ import 'package:tolon_app/screens/home/models/ActivityCategory.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
 
 class Activity {
+  final String id;
   final String title;
   final String description;
   final DateTime date;
@@ -18,6 +19,7 @@ class Activity {
     @required this.date,
     @required this.location,
     @required this.host,
+    this.id,
     this.attendingUsers = const [],
   });
 }

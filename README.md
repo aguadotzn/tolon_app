@@ -5,9 +5,9 @@ The collaborative platform to carry out activities in your village 🏘.
 # Description 
 Presentamos: TOLÓN 🔔. La plataforma colaborativa para realizar actividades en tu pueblo.
 
-![Logo](logo.png)
+![Logo](/logo.png)
 
-**Tolon** se presenta como un servicio colaborativo en el que establecer un nexo entre personas con intereses comunes para realizar actividades en compañía. 
+**Tolón** se presenta como un servicio colaborativo en el que establecer un nexo entre personas con intereses comunes para realizar actividades en compañía. 
 
 
 Consultar eventos próximos, crear nuevas actividades, observar las actividades a las que estamos apuntados, filtrar por categorías o unirse a una determinada actividad son solo algunas de las funcionalidades que ofrecemos a través de nuestra plataforma. 
@@ -19,7 +19,7 @@ Consultar eventos próximos, crear nuevas actividades, observar las actividades 
 ## Authors
 
 * _Diego Rogel_.
-* _Andrea Colina_.
+* _[Andrea Colina](https://github.com/andreaacolina)_.
 * _Sergio Pascual_.
 * _Adrián Aguado_.
 

@@ -5,10 +5,9 @@ import 'package:tolon_app/styles/TolonTheme.dart' as theme;
 import 'package:tolon_app/screens/home/models/User.dart';
 
 class HomeTabBar extends StatelessWidget {
+  final User user;
 
-  User user;
-
-  HomeTabBar(this.user);
+  const HomeTabBar(this.user);
 
   @override
   Widget build(BuildContext context) => DefaultTabController(
