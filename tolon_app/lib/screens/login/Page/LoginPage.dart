@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tolon_app/screens/home/HomeTabBar.dart';
 import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
-import '../ViewModel/LoginPageViewModel.dart' as prefix0;
 import '../page/ILoginPage.dart';
 import '../page/LoginPageIB.dart';
 import '../viewModel/LoginPageViewModel.dart';
