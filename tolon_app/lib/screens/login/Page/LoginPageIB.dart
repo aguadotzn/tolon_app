@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tolon_app/styles/ImagesReferences.dart';
 
+import '../../../widgets/PrimaryButton.dart';
+
 class LoginPageIB {
   static Widget build(
-    BuildContext context,
-    Function() onPressed,
-    Function() onSeeEvents,
-    TextEditingController usernameController,
-    TextEditingController passwordController,
-  ) {
+      BuildContext context,
+      Function() onPressed,
+      Function() onSeeEvents,
+      Function() onPressedRegister,
+      TextEditingController usernameController,
+      TextEditingController passwordController,
+      Function() checkEnableLogin,
+      bool isEnable) {
+    FocusNode passwordFocus = FocusNode();
+
     return SafeArea(
       top: true,
       child: SingleChildScrollView(
@@ -33,16 +39,29 @@ class LoginPageIB {
                   controller: usernameController,
                   decoration: InputDecoration(
                       labelText: "Usuario", border: OutlineInputBorder()),
-                  onChanged: null,
+                  onChanged: (value) {
+                    checkEnableLogin();
+                  },
+                  onFieldSubmitted: (value) {
+                    passwordFocus.requestFocus();
+                  },
                 ),
                 SizedBox(
                   height: 8,
                 ),
                 TextFormField(
+                  focusNode: passwordFocus,
                   controller: passwordController,
                   decoration: InputDecoration(
                       labelText: "Contraseña", border: OutlineInputBorder()),
                   obscureText: true,
+                  onChanged: (value) {
+                    checkEnableLogin();
+                  },
+                  onEditingComplete: () {
+                    FocusNode newFocus = FocusNode();
+                    newFocus.requestFocus();
+                  },
                 ),
               ],
             ),
@@ -52,16 +71,16 @@ class LoginPageIB {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                RaisedButton(
-                  child: Text("Iniciar sesión"),
-                  onPressed: onPressed,
+                PrimaryButton(
+                  onPressed: isEnable == true ? onPressed : null,
+                  title: "Iniciar sesión",
                 ),
                 FlatButton(
                   child: Text(
                     "Registrarse",
                     style: TextStyle(color: Theme.of(context).accentColor),
                   ),
-                  onPressed: onPressed,
+                  onPressed: onPressedRegister,
                   color: Colors.transparent,
                 ),
                 FlatButton(

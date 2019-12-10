@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tolon_app/screens/home/HomeTabBar.dart';
 import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
-import 'package:tolon_app/screens/login/page/LoginPageIB.dart';
+import '../ViewModel/LoginPageViewModel.dart' as prefix0;
+import '../page/ILoginPage.dart';
+import '../page/LoginPageIB.dart';
 import '../viewModel/LoginPageViewModel.dart';
 import '../viewModel/LoginViewModelInjector.dart';
-import 'ILoginPage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> implements ILoginPage {
   TextEditingController username;
   TextEditingController password;
-  bool isEnable = false;
+  bool isEnable;
 
   LoginPageViewModel _viewModel;
 
@@ -24,21 +25,27 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
     _viewModel = LoginViewModelInjector.injectMockViewModel(this);
     username = TextEditingController();
     password = TextEditingController();
+    _enableLoginButton();
+
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) => LoginPageIB.build(
-      context, onPressed, onPressedSeeEvents, username, password);
+  Widget build(BuildContext context) => LoginPageIB.build(context, onPressed, onPressedSeeEvents, onPressedRegister, username, password, _enableLoginButton,isEnable);
 
   void onPressed() {
     FocusScope.of(context).unfocus();
     _viewModel.login(username.text, password.text);
   }
 
+  void onPressedRegister() {
+    _viewModel.register();
+  }
+
   void onPressedSeeEvents() {
     _viewModel.seePublicEvents();
   }
+
 
   @override
   void onLogin() {
@@ -64,6 +71,7 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   @override
   void onError() {
     print("Error in login screen");
+    _showAlertDialog(context);
   }
 
   @override
@@ -84,5 +92,38 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         ),
       ),
     );
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (buildcontext) {
+          return AlertDialog(
+            title: Text("Ops..."),
+            content: Text("Ha ocurrido un error"),
+          );
+        });
+  }
+
+  void _enableLoginButton() {
+    if((username.text.isNotEmpty ) && (password.text.isNotEmpty)){
+        setState(() {
+          isEnable = true;
+        });
+    } else {
+      setState(() {
+        isEnable = false;
+      });
+    }
+  }
+
+  @override
+  void onErrorRegister() {
+    _showAlertDialog(context);
+ }
+
+  @override
+  void onSuccessRegister() {
+    _showAlertDialog(context);
   }
 }
