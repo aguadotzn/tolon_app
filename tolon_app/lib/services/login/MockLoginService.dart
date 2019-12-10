@@ -4,7 +4,7 @@ import 'ILoginService.dart';
 class MockLoginService extends ILoginService {
   @override
   Future<bool> login(String username, String password) {
-    return Future.value(false);
+    return Future.value(true);
   }
 
   @override

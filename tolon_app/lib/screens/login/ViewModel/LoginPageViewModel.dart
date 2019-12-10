@@ -31,4 +31,11 @@ class LoginPageViewModel {
       view.onError();
     });
   }
+
+  void register() {
+    // TODO: Implement Register behaviour 
+    // Here, the user should navigate to the register form. 
+
+    view.onErrorRegister();
+  }
 }

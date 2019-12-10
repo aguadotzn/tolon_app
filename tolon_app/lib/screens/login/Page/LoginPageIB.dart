@@ -9,10 +9,13 @@ class LoginPageIB {
       BuildContext context,
       Function() onPressed,
       Function() onSeeEvents,
+      Function() onPressedRegister,
       TextEditingController usernameController,
       TextEditingController passwordController,
       Function() checkEnableLogin,
       bool isEnable) {
+    FocusNode passwordFocus = FocusNode();
+
     return SafeArea(
       top: true,
       child: SingleChildScrollView(
@@ -39,17 +42,25 @@ class LoginPageIB {
                   onChanged: (value) {
                     checkEnableLogin();
                   },
+                  onFieldSubmitted: (value) {
+                    passwordFocus.requestFocus();
+                  },
                 ),
                 SizedBox(
                   height: 8,
                 ),
                 TextFormField(
+                  focusNode: passwordFocus,
                   controller: passwordController,
                   decoration: InputDecoration(
                       labelText: "Contraseña", border: OutlineInputBorder()),
                   obscureText: true,
                   onChanged: (value) {
                     checkEnableLogin();
+                  },
+                  onEditingComplete: () {
+                    FocusNode newFocus = FocusNode();
+                    newFocus.requestFocus();
                   },
                 ),
               ],
@@ -60,18 +71,16 @@ class LoginPageIB {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                // RaisedButton(
-                //   disabledColor:Theme.of(context).secondaryHeaderColor,
-                //   child: Text("Iniciar sesión"),
-                //   onPressed: isEnable == true ? onPressed : null,
-                // ),
-                PrimaryButton(onPressed: isEnable == true ? onPressed : null, title: "Iniciar sesión",),
+                PrimaryButton(
+                  onPressed: isEnable == true ? onPressed : null,
+                  title: "Iniciar sesión",
+                ),
                 FlatButton(
                   child: Text(
                     "Registrarse",
                     style: TextStyle(color: Theme.of(context).accentColor),
                   ),
-                  onPressed: onPressed,
+                  onPressed: onPressedRegister,
                   color: Colors.transparent,
                 ),
                 FlatButton(

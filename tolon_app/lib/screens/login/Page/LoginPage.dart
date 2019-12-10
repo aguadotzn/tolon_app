@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tolon_app/screens/home/HomeTabBar.dart';
 import 'package:tolon_app/screens/home/feed/Page/HomeFeedPage.dart';
 import 'package:tolon_app/screens/home/models/User.dart';
+import '../ViewModel/LoginPageViewModel.dart' as prefix0;
 import '../page/ILoginPage.dart';
 import '../page/LoginPageIB.dart';
 import '../viewModel/LoginPageViewModel.dart';
@@ -30,16 +31,21 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
   }
 
   @override
-  Widget build(BuildContext context) => LoginPageIB.build(context, onPressed, onPressedSeeEvents, username, password, _enableLoginButton,isEnable);
+  Widget build(BuildContext context) => LoginPageIB.build(context, onPressed, onPressedSeeEvents, onPressedRegister, username, password, _enableLoginButton,isEnable);
 
   void onPressed() {
     FocusScope.of(context).unfocus();
     _viewModel.login(username.text, password.text);
   }
 
+  void onPressedRegister() {
+    _viewModel.register();
+  }
+
   void onPressedSeeEvents() {
     _viewModel.seePublicEvents();
   }
+
 
   @override
   void onLogin() {
@@ -93,7 +99,8 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         context: context,
         builder: (buildcontext) {
           return AlertDialog(
-            title: Text("No se ha podido iniciar sesión."),
+            title: Text("Ops..."),
+            content: Text("Ha ocurrido un error"),
           );
         });
   }
@@ -108,5 +115,15 @@ class LoginPageState extends State<LoginPage> implements ILoginPage {
         isEnable = false;
       });
     }
+  }
+
+  @override
+  void onErrorRegister() {
+    _showAlertDialog(context);
+ }
+
+  @override
+  void onSuccessRegister() {
+    _showAlertDialog(context);
   }
 }
